@@ -1,0 +1,14 @@
+body {
+	font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+	}
+.gb_textarea {
+	resize: none;
+	background-color:#FEFFCD;
+	}
+.gb_table {
+	border:1;
+	border-style:solid;
+}
+.gb_table td {
+	border:0;
+}

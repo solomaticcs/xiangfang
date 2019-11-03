@@ -1,0 +1,513 @@
+﻿body {
+	font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+	color: #000;
+	background-color: #E2DEC3;
+	margin: 20px 0;
+	padding: 0px;
+}
+/* ========================
+keeps linked images from having a hyperlink border
+=========================== */
+body img {
+	border: 0px;
+	text-decoration: none;
+}
+/*=================================
+Border Radius for CURVED CORNERS. The overall wrapper is assigned an 8px radius on all 4 corners. The masthead is assigned a 6px radius for its top corners. The footer is 
+assigned a 6px radius for its bottom corners. The footer and masthead radii must always be 2px less than the radii set on the content wrapper so that its border displays properly.
+==================================*/
+.content-wrapper {
+	border-radius: 10px;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+}
+.masthead {
+	border-radius: 8px 8px 0px 0px;
+	-webkit-border-radius: 8px 8px 0px 0px;
+	-moz-border-radius: 8px 8px 0px 0px;
+}
+/*================================
+Masthead, includes Logo and Banner.
+===================================*/
+.masthead {
+	text-align: left;
+	position: relative;
+	z-index: 9999999;
+}
+/*We set height and overflow hidden to allow you place an image in the banner that would normally be too large. You can edit or remove this rule if you design your banner image to fit your layout.*/
+.masthead .banner {
+	background-position: center bottom;
+	height: 400px;
+	overflow: hidden;
+	background-image: url('../_images/banner.png');
+	background-repeat: no-repeat;
+	border-radius: 8px 8px 0px 0px;
+	-webkit-border-radius: 8px 8px 0px 0px;
+	-moz-border-radius: 8px 8px 0px 0px;
+}
+/*=====================================
+Main Layout Container. The entire page is inside this element.
+========================================*/
+.content-wrapper {
+	border: 1px solid #222;
+	width: 1050px;
+	margin: 0 auto;
+	-webkit-box-shadow: 0 0 20px #999;
+	box-shadow: 0 0 20px #999;
+}
+/*===============================
+The containing element for the the main content. We simply set the content area to have a white background.
+================================*/
+.columns-wrapper {
+	overflow: hidden;
+	background-color: #FFF;
+}
+/*=========================================
+This container is inside the columns wrapper and serves as a container for the content inside, allowing you to adjust whitespace (padding) without altering the CSS box model. 
+This is the rule to use to set text attributes for your main content.
+===========================================*/
+.main-content .content {
+	padding: 20px;
+	font-size: .9em;
+	line-height: 1.5em;
+}
+/*========================
+Heading styles
+=========================*/
+h1, h2, h3, h4 {
+	margin: 30px 0 0 0;
+	line-height: normal;
+}
+h1 {
+	font-size: 1.5em;
+}
+h2 {
+	font-size: 1.25em;
+}
+h3 {
+	font-size: 1.1em;
+}
+h4 {
+	font-size: 1em;
+}
+/*=============================
+A utility rule assigned to the first heading to remove all margins. This class can be used on any element for which you would like to remove margin.
+==============================*/
+.page-topper {
+	margin: 0px;
+}
+/*=========================
+Misc. Typographic Styles
+==========================*/
+.content em {
+	font-style: normal;
+	text-transform: uppercase;
+	font-size: 110%;
+}
+.content em.big {
+	font-size: 125%;
+}
+.smalltxt {
+	font-size: x-small;
+}
+.ctr {
+	text-align: center;
+}
+/*======================
+Sidebar
+=======================*/
+.sidebar {
+	width: 220px;
+	float: right;
+	background-color: #FFFFFF;
+	border-left-style: solid;
+	border-left-width: 1px;
+	border-left-color: #000000;
+}
+/*======================
+DO NOT EDIT
+========================*/
+.p7desktop .sidebar {
+	padding-bottom: 32767px;
+	margin-bottom: -32767px;
+}
+/*=====================
+The Sidebar content. Edit padding and font attributes to suit
+=======================*/
+.sidebar .content {
+	padding: 20px;
+	font-size: .9em;
+	line-height: 1.5em;
+}
+/*====================
+Main Content - margin left allows space for the floated sidebar.
+======================*/
+.main-content {
+	/*margin-right: 220px;*/
+	margin-right: 0px;
+}
+/*=========================
+Footer
+==========================*/
+.footer {
+	border-top: 1px solid #222;
+	background-color: #756B5C;
+	padding: 10px 30px;
+	font-size: .8em;
+	color: #FFF;
+	margin-bottom: 15px;
+	text-align: center;
+	border-top-color: #654E3C;
+}
+.footer p {
+	margin: 0px;
+}
+/*========================
+Ordinary Link Styles
+=========================*/
+.content a {
+	color: #303E24;
+}
+.content a:hover, .content a:focus {
+	color: #C30;
+}
+.footer a {
+	color: #E2DEC4;
+}
+.footer a:hover, .footer a:focus {
+	color: #FFF;
+}
+/*======================
+Lists: We reduce normal indentation and remove bullets for ordered and unordered lists  when placed in a sidebar
+======================*/
+.sidebar ul, .sidebar ol, .sidebar2 ul, .sidebar2 ol {
+	margin: 0 0 0 .5em;
+	padding: 0 0 0 .5em;
+	line-height: normal;
+}
+.sidebar li, .sidebar2 li {
+	margin-bottom: 4px;
+}
+/*==========================
+The DIV that contains the horizontal menu bar at the top of your page.
+===========================*/
+.menutop-wrapper {
+	padding: 10px 20px;
+	background-color: #756B5C;
+	border-top: 1px solid #000;
+	border-bottom: 1px solid #FFF;
+	-webkit-box-shadow: 0px 0px 30px #999;
+	box-shadow: 0px 0px 30px #999;
+	position: relative;
+	z-index: 999999;
+}
+/*===================
+The Top Menu Bar UL. Font-Size 0 eliminates horizontal whitespace between menu items. DO NOT EDIT any property EXCEPT for text-align, which can be changed to center or right to 
+easily re-position the menu. 
+=====================*/
+.menutop {
+	margin: 0px;
+	padding: 0px;
+	font-size: 0px;
+	text-align: left;
+}
+/*The menu list items. DO NOT EDIT the first 2 properties. Margin-right provises some separation between each item and may be edited.*/
+.menutop li {
+	list-style-type: none;
+	display: inline-block;
+	margin-right: 6px;
+}
+/*========================
+The menu links. MUST BE DISPLAY BLOCK. Padding provides white space within the link box. The first padding value controls the height of the box. The second value controls width.
+=========================*/
+.menutop a {
+	display: block;
+	color: #000000;
+	text-decoration: none;
+	padding: 6px 10px;
+	font-size: medium;
+	border: 1px solid #000;
+	border-radius: 4px;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	background-color: #B3A9A8;
+}
+/*====================
+The menu links hover and focus states. A box shadow effect changes for this state. 
+======================*/
+.menutop a:hover, .menutop a:focus {
+	color: #FFF;
+	border-color: #FFFFFF;
+	outline: 0;
+}
+/*====================
+The Optional Sidebar Menu UL.
+=====================*/
+ul.menuside {
+	margin: 0;
+	padding: 8px 0 0 0;
+}
+/*=========================
+The menu list items. Margin-bottom provides some separation between each item and may be edited.
+===========================*/
+ul.menuside li {
+	list-style-type: none;
+	margin-bottom: 5px;
+}
+/*=========================
+The menu links. MUST BE DISPLAY BLOCK. Padding provides white space within the link box. The first padding value controls the height of the box. The second value controls width. 
+A box shadow is set.
+===========================*/
+.menuside a {
+	display: block;
+	color: #000;
+	text-decoration: none;
+	padding: 8px 10px;
+	font-size: 14px;
+	border: 1px solid #FFF;
+	border-radius: 4px;
+	-webkit-border-radius: 4x;
+	-moz-border-radius: 4px;
+	background-color: #D2D2D2;
+	-webkit-box-shadow: 0px 0px 15px #DDD;
+	box-shadow: 0px 0px 15px #DDD;
+}
+/*===================
+The menu links hover and focus states. A box shadow effect changes for this state. 
+====================*/
+.menuside a:hover, .menuside a:focus {
+	color: #FFF;
+	border-color: #222;
+	background-color: #6A724E;
+	box-shadow: 5px 5px 30px #999;
+	-webkit-box-shadow: 5px 5px 30px #999;
+	outline: 0;
+}
+/* ===================
+images 
+=================== */
+.imglft {
+	padding: 5px 10px 5px 0px;
+	float: left;
+}
+.imgrgt {
+	padding: 5px 0px 5px 10px;
+	float: right;
+}
+.imgctr {
+	display: block;
+	margin: 0px auto;
+}
+/*=============
+form styles 
+==============*/
+form fieldset {
+	padding: 1em;
+	font: 80%/1 sans-serif;
+	border: 1px solid #4D5A4D;
+}
+form fieldset label {
+	width: 15%;
+	margin-right: 0.5em;
+	padding-top: 0.2em;
+	text-align: right;
+	font-weight: bold;
+}
+form fieldset legend {
+	padding: 0.2em 0.5em;
+	border: 1px solid #000000;
+	color: #ffffff;
+	text-align: right;
+	font-variant: small-caps;
+	background-color: #766E62;
+}
+.cf {
+	border: 1px #353c48 solid;
+	background-image: url('../_images/form-bg.jpg');
+	background-repeat: repeat;
+}
+.button {
+	font: normal medium Verdana, serif;
+	height: 22px;
+	border: 1px solid #000000;
+	background-color: #766E62;
+	color: white;
+}
+/*===================
+MOBILE
+====================*/
+body.p7mobile {
+	-webkit-text-size-adjust: 100%;
+	min-width: 0;
+	margin: 1em;
+}
+.p7mobile .menutop a, .p7mobile .footer {
+	font-size: large;
+}
+.p7mobile .menutop li {
+	margin-bottom: 5px;
+}
+.p7mobile .menuside {
+	margin: 0;
+	padding: 0;
+}
+.p7mobile .menuside li {
+	list-style-type: none;
+	margin-bottom: 5px;
+	display: inline-block;
+	margin-right: 5px;
+}
+.p7mobile .menuside a, .p7mobile .footer {
+	font-size: large;
+}
+.p7mobile .content-wrapper {
+	width: auto;
+}
+.p7mobile .content {
+	font-size: 16px;
+}
+.p7mobile .sidebar {
+	width: auto;
+	float: none;
+	margin-left: 0;
+	border: none;
+	background: transparent;
+}
+.p7mobile .sidebar .content {
+	padding: 30px;
+	width: auto;
+}
+.p7mobile .main-content {
+	margin-right: 0;
+}
+.p7mobile .columns-wrapper {
+	background-image: none;
+	border-left: none;
+}
+
+/*我的自訂義*/
+.my_menuleft
+{
+	vertical-align: top;
+	width:150px;
+	padding-left:0px;
+	text-align:center;
+}
+.my_content
+{
+	width:850px;
+	text-align:left;
+}
+.my_fullcontent
+{
+	width:1000px;
+	text-align:left;
+}
+
+/*product.php CSS------開始------*/
+.product_table {
+	margin:0 auto;
+	width:600px;
+	box-shadow: 0 0 0px #000000;
+}
+.product_img {
+	width:300px;
+}
+
+.product_information {
+	vertical-align: top;
+	padding-left:20px;
+	text-align:left;
+}
+
+#photoeffect{
+
+width:250px;
+height:240px;
+background-color:white;
+text-align:center;
+border-style:double;
+border:1px;
+box-shadow: 0 0 20px #000000;
+}
+
+.scoretable{
+	box-shadow: 0 0 0px #000000;
+}
+
+/*product.php CSS------結束------*/
+
+/*購物車CSS------開始------*/
+
+.carttable {
+	margin:0 auto;
+}
+
+.stable {
+	margin:0 auto;
+	border: 1px solid;
+	border-collapse:collapse;
+	text-align:center;
+}
+
+.img {
+	padding-top:0px;
+	padding-bottom:0px;
+	padding-left:0px;
+	padding-right:0px;
+}
+
+.sname {
+	text-align:center;
+}
+
+.record {
+	text-align:right;
+}
+
+/*購物車CSS------結束------*/
+
+/*search.php CSS------開始------*/
+
+.search_table {
+	margin:0 auto;
+	box-shadow: 0 0 0px #000000;
+}
+
+/*search.php CSS------結束------*/
+
+
+
+/*register.php CSS-----開始-----*/
+
+.register_table {
+	margin:0 auto;
+	box-shadow: 0 0 0px #000000;
+}
+
+
+/*register.php CSS-----結束-----*/
+
+
+/*login.php CSS------開始-------*/
+
+.login_table {
+	margin:0 auto;
+	box-shadow: 0 0 0px #000000;
+}
+
+/*login.php CSS------結束-------*/
+
+/*order.php CSS------開始-------*/
+
+.order_table {
+	margin:0 auto;
+	border: 1px solid #222;
+	box-shadow: 0 0 0px #000000;
+}
+
+.order_table td {
+	border: 1px solid #222;
+}
+
+/*order.php CSS------結束-------*/

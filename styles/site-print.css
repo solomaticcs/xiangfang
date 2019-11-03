@@ -1,0 +1,29 @@
+/* 
+  ------------------------------------------------
+  PVII CSS Page Builder Magic
+  Copyright (c) 2011 Project Seven Development
+  www.projectseven.com
+  Print Media Style Sheet
+  ------------------------------------------------
+*/
+
+/*Min-width determines the point at which your layout width will cease to shrink horizontally and your browser will spawn a horizontal scroll bar.*/
+body {
+	margin: 0;
+	padding: 0;
+	min-width: 0;
+}
+/*DO NOT EDIT*/
+.p7desktop .sidebar, .p7desktop .main-content, .p7desktop .sidebar2 {
+	padding-bottom: 0;
+	margin-bottom: 0;
+	float: none;
+	width: auto;
+	border: 0;
+}
+.menuside li {
+	display: inline-block;
+}
+.p7desktop .main-content {
+	margin: 0;
+}
