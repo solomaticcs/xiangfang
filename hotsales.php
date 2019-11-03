@@ -1,4 +1,4 @@
-﻿<?php session_start();
+﻿<?php @session_start();
 include('indb.php');
 $idc = $_SESSION['idc'];
 ?>
@@ -42,23 +42,23 @@ $idc = $_SESSION['idc'];
 					<p><font color="#5b5b5b">尺寸 ：長 35.5 * 寬 25.5 * 高 46.5  * 附輪子高 52 (公分) </font>
 					<p><font color="#5b5b5b">托盤 ：長 31.5 * 寬 10 * 高 2.8 (公分) </font>
 					<p><font color="#5b5b5b">底部 ：高 32 (公分)   </font></p>
-					<p><img src="images/hot1.jpg"/></p>
-					<p><font color="#0080ff">↓型號9006</font><br><img src="images/hot2.jpg"/></p>
+					<p><img src="_images/hot1.jpg"/></p>
+					<p><font color="#0080ff">↓型號9006</font><br><img src="_images/hot2.jpg"/></p>
 					<p><font color="#008000"><font color="#000000"><font color="#0080ff">↓型號： D9009   </font>     </font></font><strong><font color="#ff0000" size="4"> </font></strong><font color="#000000" size="3"> </font></p>
 					<p><font color="#2d2d2d">尺寸 ：長 36 * 寬 23.5  * 總高（含手把） 71  （公分）</font> 
 					<p><font color="#2d2d2d">第一層(托盤) ：長 31.2 * 寬 8.7 * 高 3.7  。。底高 7（公分）</font> 
 					<p><font color="#2d2d2d">第二層：長 34.5 * 寬 22 * 高 8.6（公分）</font> 
 					<p><font color="#2d2d2d">第三層內的八格隔層(格版可調)：長 32.2 * 寬 10.5 * 高 10  （公分）</font> 
 					<p><font color="#2d2d2d">第三層內的八格隔層(格版可調)：長 32.2 * 寬 10.5 * 高 10  （公分）</font> 
-					<p><font color="#2d2d2d">第三層內的兩個抽屜：長 33.1 * 寬 10.2 * 高 11.3  （公分）</font><br><img src="images/hot3.jpg"/><br><br><font color="#0080ff">↓型號2892</font></p>
+					<p><font color="#2d2d2d">第三層內的兩個抽屜：長 33.1 * 寬 10.2 * 高 11.3  （公分）</font><br><img src="_images/hot3.jpg"/><br><br><font color="#0080ff">↓型號2892</font></p>
 					<font color="#ff0000">
 					<p><font color="#5b5b5b">尺寸：長 36*寬 22*高 35 (CM) </font>
 					<p><font color="#5b5b5b">四個小格層：長 31.8*寬 8.8*高 3.5 (CM) </font>
-					<p><font color="#5b5b5b">底部：長 34*寬 20*高 23.5 (CM)</font><font color="#000000"> </font><br></p><img src="images/hot4.jpg"/></font>
+					<p><font color="#5b5b5b">底部：長 34*寬 20*高 23.5 (CM)</font><font color="#000000"> </font><br></p><img src="_images/hot4.jpg"/></font>
 					<p><font color="#0080ff">↓型號9001</font><font color="#0080ff">   </font>&gt;</p>
 					<p><font color="#434343">尺寸：長 46*寬 24.5*高 25.5(CM) </font></p>
 					<p align="left"><font color="#434343">托盤：長32*寬10*高4 {格板可自由調整} </font>
-					<p align="left"><font color="#434343">底部高：26公分<br></font><img src="images/hot5.jpg"/>
+					<p align="left"><font color="#434343">底部高：26公分<br></font><img src="_images/hot5.jpg"/>
 				</td>
 				</table>
 			</div>

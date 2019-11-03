@@ -1,4 +1,4 @@
-﻿<?php session_start();
+﻿<?php @session_start();
 include('indb.php');
 $idc = $_SESSION['idc'];
 $pid = $_REQUEST['pid'];
@@ -7,19 +7,19 @@ $tid = $_REQUEST['tid'];
 $tid2 = str_replace(array("\n","\t","\r","<javascript","<LINK","<br />","<br>","<br/>","<b>","<i>","<u>","'"), array("","","","","","","","","","","",""), $tid);
 //搜尋所有的商品總和
 $count_cart_1 = "select count(*) from product;";
-$count_cart_2 = pg_query($count_cart_1);
-$count_cart_3 = pg_fetch_row($count_cart_2);
+$count_cart_2 = $db->db_query($count_cart_1);
+$count_cart_3 = $db->db_fetch($count_cart_2);
 $num=4; //每排幾個
 $sum=0; //初始設0
 if($pid2 != null && $tid2 != null)
 {
 	//搜尋所有商品中的指定商品
 	$select_cart_product_1 = "select product.pid,product_type.tid,product_type.tname,product.pmodel,product.size,product.weight,product.price,product.imgurl,product.click from product,product_type where product.tid=product_type.tid and product.pid='$pid2';";
-	$select_cart_product_2 = pg_query($select_cart_product_1);
-	$select_cart_product_3 = pg_fetch_row($select_cart_product_2);
+	$select_cart_product_2 = $db->db_query($select_cart_product_1);
+	$select_cart_product_3 = $db->db_fetch($select_cart_product_2);
 	//更新瀏覽次數
 	$update_product_record_click_1 = "update product set click=(select click from product where pid='$pid2')+1 where pid='$pid2';";
-	$update_product_record_click_2 = pg_query($update_product_record_click_1);
+	$update_product_record_click_2 = $db->db_query($update_product_record_click_1);
 }
 ?>
 <!doctype html>

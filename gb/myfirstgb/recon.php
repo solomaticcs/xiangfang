@@ -22,24 +22,24 @@
 		<div class="main-content">
 			<div class="content">
 				<?php
-				session_start();
-				include('indb.php');
+				@session_start();
+				include('../../indb.php');
 				$no = $_REQUEST['no'];
 				@$nowtime = date("D-F-d H:i:s");
 				$idc = $_SESSION['idc'];
 				$user1 = "select * from member where level = '0' and id = '$idc'";
-				$user2 = pg_query($user1);
-				$user3 = pg_fetch_row($user2);
+				$user2 = $db->db_query($user1);
+				$user3 = $db->db_fetch($user2);
 				$admin1 = "select * from member where level = '1' and id = '$idc'";
-				$admin2 = pg_query($admin1);
-				$admin3 = pg_fetch_row($admin2);
+				$admin2 = $db->db_query($admin1);
+				$admin3 = $db->db_fetch($admin2);
 				echo '<a href="logout.php">登出</a>';
 				echo '　　';
 				echo '<a href="index.php">回上頁</a>';
 				//列出要回覆的該留言
 				$select1 = "select * from reply where no='$no'";
-				$select2 = pg_query($select1);
-				$select3 = pg_fetch_row($select2);
+				$select2 = $db->db_query($select1);
+				$select3 = $db->db_fetch($select2);
 				echo '<table name="table1" border="1" align="center" class="gb_table">';
 				echo '<tr>';
 				echo '<td colspan="2">';
@@ -53,8 +53,8 @@
 					echo "留言時間：$select3[4]<br/>";
 				echo '</td>';
 					$select4 = "select * from reply2 where no2 = $select3[0]";
-					$select5 = pg_query($select4);
-					while($select6 = pg_fetch_row($select5))
+					$select5 = $db->db_query($select4);
+					while($select6 = $db->db_fetch($select5))
 						{
 							echo '<tr>';
 							echo '<td bgcolor="#AFFEFF" colspan="2">';
@@ -67,8 +67,8 @@
 				echo '</table>';
 				//找詢回覆no
 				$select1 = "select * from reply where no =$no";
-				$select2 = pg_query($select1);
-				$select3 = pg_fetch_row($select2);
+				$select2 = $db->db_query($select1);
+				$select3 = $db->db_fetch($select2);
 
 				echo '<form name="form1" method="GET" action="process.php">';
 				echo '<table name="table1" border="0" align="center">';

@@ -22,29 +22,29 @@
 		<div class="main-content">
 			<div class="content">
 				<?php
-				session_start();
-				include('indb.php');
+				@session_start();
+				include('../../indb.php');
 				@$nowtime = date("D-F-d H:i:s");
 				$idc = $_SESSION['idc'];
 				$user1 = "select * from member where level = '0' and id = '$idc'";
-				$user2 = pg_query($user1);
-				$user3 = pg_fetch_row($user2);
+				$user2 = $db->db_query($user1);
+				$user3 = $db->db_fetch($user2);
 				$admin1 = "select * from member where level = '1' and id = '$idc'";
-				$admin2 = pg_query($admin1);
-				$admin3 = pg_fetch_row($admin2);
+				$admin2 = $db->db_query($admin1);
+				$admin3 = $db->db_fetch($admin2);
 				//ud 搜尋發文(reply)中名字(id)欄位=登入中帳號
 				$ud1 = "select * from reply where id = '$idc'";
-				$ud2 = pg_query($ud1);
-				$ud3 = pg_fetch_row($ud2);
+				$ud2 = $db->db_query($ud1);
+				$ud3 = $db->db_fetch($ud2);
 				//udd 搜尋回覆(reply2)中名字(id)欄位=登入中帳號
 				$udd1 = "select * from reply2 where id = '$idc'";
-				$udd2 = pg_query($udd1);
-				$udd3 = pg_fetch_row($udd2);
+				$udd2 = $db->db_query($udd1);
+				$udd3 = $db->db_fetch($udd2);
 				$page=isset($_GET['page'])?intval($_GET['page']):1;
 				$num=5;
 				$total1 = "select count(*) from reply";
-				$total2 = pg_query($total1);
-				$total3 = pg_fetch_row($total2);
+				$total2 = $db->db_query($total1);
+				$total3 = $db->db_fetch($total2);
 				$pagenum=ceil($total3[0]/$num);
 				if($page>$pagenum || $page == 0)
 				{
@@ -84,8 +84,8 @@
 				echo '<input type="hidden" name="a1" value="1">';
 				echo '</form>';
 				$select1 = "select * from reply order by no desc limit $num offset $offset";
-				$select2 = pg_query($select1);
-				while($select3 = pg_fetch_row($select2))
+				$select2 = $db->db_query($select1);
+				while($select3 = $db->db_fetch($select2))
 				{
 					if($select3[0] != 0)
 					{
@@ -114,8 +114,8 @@
 						echo '<tr>';
 						echo '<td colspan="2">';
 							$showgood1 = "select count(*) from good where no2 = '$select3[0]'";
-							$showgood2 = pg_query($showgood1);
-							$showgood3 = pg_fetch_row($showgood2);
+							$showgood2 = $db->db_query($showgood1);
+							$showgood3 = $db->db_fetch($showgood2);
 							echo 'GP';	echo $showgood3[0];
 							echo "<form name=\"form2\" method=\"GET\" action=\"process.php\">";
 							echo "<input type=\"hidden\" name=\"good\" value=\"$select3[0]\" />";
@@ -132,8 +132,8 @@
 							echo "<input type=\"submit\" value=\"讚\" style=\"background-color:white;\"/>";
 							echo "</form>";
 							$showgood4 = "select * from good where no2 = '$select3[0]'";
-							$showgood5 = pg_query($showgood4);
-							while($showgood6 = pg_fetch_row($showgood5))
+							$showgood5 = $db->db_query($showgood4);
+							while($showgood6 = $db->db_fetch($showgood5))
 							{
 								echo "$showgood6[2]($showgood6[3])按過讚！";
 								echo '<br/>';
@@ -149,8 +149,8 @@
 							echo '</tr>';
 						}
 						$select4 = "select * from reply2 where no2 = $select3[0]";
-						$select5 = pg_query($select4);
-						while($select6 = pg_fetch_row($select5))
+						$select5 = $db->db_query($select4);
+						while($select6 = $db->db_fetch($select5))
 						{
 							echo '<tr>';
 							echo '<td bgcolor="#AFFEFF" colspan="2">';

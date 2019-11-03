@@ -5,8 +5,8 @@
 </head>
 <body>
 <?php
-session_start();
-include('indb.php');
+@session_start();
+include('../../indb.php');
 $name = $_REQUEST['message_p'];
 $name2 = $_REQUEST['message_p2'];
 $time = $_REQUEST['time'];
@@ -28,7 +28,7 @@ if($a1 == 1)
 	$insert = "insert into reply values ((select max(no)+1 from reply),'$regname','$idc','$content','$time');";
 	if($time != null && $content != null)
 	{
-		if(pg_query($insert))
+		if($db->db_query($insert))
 		{
 			echo '輸入完成';
 			echo '<meta http-equiv=REFRESH CONTENT=0;url=index.php>';
@@ -49,12 +49,12 @@ if($a1 == 1)
 else if($a1 == 2)
 {
 	$re1 = "select * from reply";
-	$re2 = pg_query($re1);
-	$re3 = pg_fetch_row($re2);
+	$re2 = $db->db_query($re1);
+	$re3 = $db->db_fetch($re2);
 	$insert = "insert into reply2 values ((select max(no)+1 from reply2),'$no','$regname','$idc','$content','$time');";
 	if($time != null && $content != null)
 	{
-		if(pg_query($insert))
+		if($db->db_query($insert))
 		{
 			echo'回覆訊息成功';
 			echo '<meta http-equiv=REFRESH CONTENT=0;url=index.php>';
@@ -72,11 +72,11 @@ else if($a1 == 12)
 {
 	$insert = "insert into good values ((select max(no)+1 from good),'$good','$regname','$idc','1','$time');";
 	$select1 = "select * from good where no2 = '$good' and id = '$idc'";
-	$select2 = pg_query($select1);
-	$select3 = pg_fetch_row($select2);
+	$select2 = $db->db_query($select1);
+	$select3 = $db->db_fetch($select2);
 	if($select3[3] != $idc)
 	{
-		if(pg_query($insert))
+		if($db->db_query($insert))
 		{
 			echo '<meta http-equiv=REFRESH CONTENT=0;url=index.php>';
 		}
