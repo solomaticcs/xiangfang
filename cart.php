@@ -1,4 +1,4 @@
-﻿<?php session_start();
+﻿<?php @session_start();
 include('indb.php');
 $idc = $_SESSION['idc'];
 $t=time();
@@ -31,8 +31,8 @@ $t=time();
 					<?php
 						echo '<br/><font size="3">產品類別</font><br/><br/>';
 						$select_cart_type_1 = "select * from product_type order by tid desc;";
-						$select_cart_type_2 = pg_query($select_cart_type_1);
-						while($select_cart_type_3 = pg_fetch_row($select_cart_type_2))
+						$select_cart_type_2 = $db->db_query($select_cart_type_1);
+						while($select_cart_type_3 = $db->db_fetch($select_cart_type_2))
 						{
 							echo "<a href=\"type.php?tid=$select_cart_type_3[0]\">".$select_cart_type_3[1].'<br/>';
 						}
@@ -51,8 +51,8 @@ $t=time();
 						echo '</tr>';
 						//搜尋購物車內有的物品
 						$select_cart_1 = "select product.pid,product_type.tid,product_type.tname,product.pmodel,product.size,product.weight,product.price,product.imgurl,product.click from product,product_type where product.tid=product_type.tid order by pid desc;";
-						$select_cart_2 = pg_query($select_cart_1);
-						while($select_cart_3 = pg_fetch_row($select_cart_2))
+						$select_cart_2 = $db->db_query($select_cart_1);
+						while($select_cart_3 = $db->db_fetch($select_cart_2))
 						{
 							$cart_pid = $_SESSION["cart_pid_$select_cart_3[0]"];//Session中的商品編號
 							$cart_tid = $_SESSION["cart_tid_$select_cart_3[0]"];//Session中的類別編號

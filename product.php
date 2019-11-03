@@ -1,11 +1,11 @@
-﻿<?php session_start();
+﻿<?php @session_start();
 include('indb.php');
 $idc = $_SESSION['idc'];
 $page=isset($_GET['page'])?intval($_GET['page']):1;
 //搜尋所有的商品總和
 $count_cart_1 = "select count(*) from product;";
-$count_cart_2 = pg_query($count_cart_1);
-$count_cart_3 = pg_fetch_row($count_cart_2);
+$count_cart_2 = $db->db_query($count_cart_1);
+$count_cart_3 = $db->db_fetch($count_cart_2);
 $total = $count_cart_3[0]; 
 $pagesize=3; //每頁幾排
 $num=4; //每排幾個
@@ -41,8 +41,8 @@ $offset=($page-1)*$pageall;
 				<?php
 				echo '<br/><font size="3">產品類別</font><br/><br/>';
 				$select_cart_type_1 = "select * from product_type order by tid desc;";
-				$select_cart_type_2 = pg_query($select_cart_type_1);
-				while($select_cart_type_3 = pg_fetch_row($select_cart_type_2))
+				$select_cart_type_2 = $db->db_query($select_cart_type_1);
+				while($select_cart_type_3 = $db->db_fetch($select_cart_type_2))
 				{
 					echo "<a href=\"type.php?tid=$select_cart_type_3[0]\">".$select_cart_type_3[1].'<br/>';
 				}
@@ -67,8 +67,8 @@ $offset=($page-1)*$pageall;
 				echo '<table class="carttable">';
 				echo '<tr>';
 				$select_cart_1 = "select * from product order by pid desc limit $pageall offset $offset;";
-				$select_cart_2 = pg_query($select_cart_1);
-				while($select_cart_3 = pg_fetch_row($select_cart_2))
+				$select_cart_2 = $db->db_query($select_cart_1);
+				while($select_cart_3 = $db->db_fetch($select_cart_2))
 				{ //列出所有的物品清單
 					$sum=$sum+1;
 					if($sum > $num)

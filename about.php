@@ -1,4 +1,4 @@
-﻿<?php session_start();
+﻿<?php @session_start();
 include('indb.php');
 $idc = $_SESSION['idc'];
 ?>

@@ -1,4 +1,4 @@
-﻿<?php session_start();
+﻿<?php @session_start();
 include('indb.php');
 $idc = $_SESSION['idc'];
 $page=isset($_GET['page'])?intval($_GET['page']):1;
@@ -47,8 +47,8 @@ $search_product_price_b2 = $_SESSION['search_product_price_b2'];
 					<?php
 						echo '<br/><font size="3">產品類別</font><br/><br/>';
 						$select_cart_type_1 = "select * from product_type order by tid desc;";
-						$select_cart_type_2 = pg_query($select_cart_type_1);
-						while($select_cart_type_3 = pg_fetch_row($select_cart_type_2))
+						$select_cart_type_2 = $db->db_query($select_cart_type_1);
+						while($select_cart_type_3 = $db->db_fetch($select_cart_type_2))
 						{
 							echo "<a href=\"type.php?tid=$select_cart_type_3[0]\">".$select_cart_type_3[1].'<br/>';
 						}
@@ -72,8 +72,8 @@ $search_product_price_b2 = $_SESSION['search_product_price_b2'];
 						echo '<option value="%">全部</option>';
 						//搜尋產品類別
 						$seltype1 = "select tname from product_type;";
-						$seltype2 = pg_query($seltype1);
-						while($seltype3 = pg_fetch_row($seltype2))
+						$seltype2 = $db->db_query($seltype1);
+						while($seltype3 = $db->db_fetch($seltype2))
 						{
 							echo "<option value=\"$seltype3[0]\">$seltype3[0]</option>";
 						}
@@ -119,8 +119,8 @@ $search_product_price_b2 = $_SESSION['search_product_price_b2'];
 						echo '</table>';
 						$havenot=0; //是否有搜尋產品在session
 						$select_cart_4 = "select * from product;";
-						$select_cart_5 = pg_query($select_cart_4);
-						while($select_cart_6 = pg_fetch_row($select_cart_5))
+						$select_cart_5 = $db->db_query($select_cart_4);
+						while($select_cart_6 = $db->db_fetch($select_cart_5))
 						{
 							$producthavenot = $_SESSION["search1_$select_cart_6[0]"];
 							if($producthavenot != null)
@@ -151,8 +151,8 @@ $search_product_price_b2 = $_SESSION['search_product_price_b2'];
 				and product.weight >= $search_product_weight_s2 and product.weight <= $search_product_weight_b2
 				and product.price >= $search_product_price_s2 and product.price <= $search_product_price_b2
 				order by pid asc limit $pageall offset $offset;";
-							$select_cart_2 = pg_query($select_cart_1);
-							while($select_cart_3 = pg_fetch_row($select_cart_2))
+							$select_cart_2 = $db->db_query($select_cart_1);
+							while($select_cart_3 = $db->db_fetch($select_cart_2))
 							{
 								$product_pid = $_SESSION["search1_$select_cart_3[0]"];
 								$product_pmodel = $_SESSION["search2_$select_cart_3[0]"];

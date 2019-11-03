@@ -8,7 +8,7 @@ create table member (no int not null,name varchar(10),id varchar(20),pw varchar(
 
 insert into member values ('0','','','','');
 insert into member values ('1','DwyaneWade','wade','5678','0');
-insert into member values ('2','ºŞ²z­û','admin','123456','1');
+insert into member values ('2','ç®¡ç†å“¡','admin','123456','1');
 
 create table good (no int not null,no2 int not null,name varchar(10),id varchar(10),good varchar(10),time varchar);
 

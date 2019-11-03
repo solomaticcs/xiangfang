@@ -1,4 +1,4 @@
-﻿<?php session_start();
+﻿<?php @session_start();
 include('indb.php');
 $type = $_REQUEST['type'];//接受給的方法
 $type2 = str_replace(array("\n","\t","\r","<javascript","<LINK","<br />","<br>","<br/>","<b>","<i>","<u>","'"), array("","","","","","","","","","","",""), $type);
@@ -22,12 +22,12 @@ if($type2 == 'registermember')
 	if($id2 != null && $pw2 != null && $name2 != null && $email2 != null && $telphone2 != null && $addr2 != null)
 	{
 		$select_member1 = "select uid from product_member where uid='$id2';";
-		$select_member2 = pg_query($select_member1);
-		$select_member3 = pg_fetch_row($select_member2);
+		$select_member2 = $db->db_query($select_member1);
+		$select_member3 = $db->db_fetch($select_member2);
 		if($select_member3[0] == null)
 		{
 			$insert1 = "insert into product_member values ((select max(uno)+1 from product_member),'$id2','$pwsha1','$name2','$email2','$telphone2','$addr2','0');";
-			if(pg_query($insert1))
+			if($db->db_query($insert1))
 			{
 				echo '註冊成功！...3秒後回首頁<br/>';
 				echo '<a href="index.php">點我回首頁</a>';
@@ -54,8 +54,8 @@ else if($type2 == 'login')
 	$pw = $_REQUEST['pw'];//取得使用者輸入的密碼
 	$pwsha1 = sha1($pw);
 	$select_member1 = "select * from product_member where uid='$id';";
-	$select_member2 = pg_query($select_member1);
-	$select_member3 = pg_fetch_row($select_member2);
+	$select_member2 = $db->db_query($select_member1);
+	$select_member3 = $db->db_fetch($select_member2);
 	if($id != null && $id == $select_member3[1] && $pwsha1 != null && $pwsha1 == $select_member3[2])
 	{
 		echo '登入成功！...3秒後回首頁<br/>';
@@ -78,8 +78,8 @@ else if($type2 == 'backstagelogin')
 	$pw = $_REQUEST['pw'];//取得管理員輸入的密碼
 	$pwsha1 = sha1($pw);
 	$select_member1 = "select * from product_member where uid='$id';";
-	$select_member2 = pg_query($select_member1);
-	$select_member3 = pg_fetch_row($select_member2);
+	$select_member2 = $db->db_query($select_member1);
+	$select_member3 = $db->db_fetch($select_member2);
 	if($id != null && $id == $select_member3[1] && $pwsha1 != null && $pwsha1 == $select_member3[2] && $select_member3[7] == 88888)
 	{
 		echo '登入成功！...3秒後進入管理員介面<br/>';
@@ -99,8 +99,8 @@ else if($type2 == 'backstagelogin')
 else if($type2 == 'backstageAdd')
 {
 	$max1 = "select max(pid)+1 from product;";
-	$max2 = pg_query($max1);
-	$max3 = pg_fetch_row($max2);
+	$max2 = $db->db_query($max1);
+	$max3 = $db->db_fetch($max2);
 	$insert_product_type = $_REQUEST['insert_product_type'];
 	$insert_product_pmodel = $_REQUEST['insert_product_pmodel'];
 	$insert_product_size = $_REQUEST['insert_product_size'];
@@ -112,7 +112,7 @@ else if($type2 == 'backstageAdd')
 		copy($_FILES['imgfile']['tmp_name'],$FILENAME);
 		$insert_product_imgurl = $max3[0].'.jpg';
 		$insert1 = "insert into product values ((select max(pid)+1 from product),'$insert_product_type','$insert_product_pmodel','$insert_product_size','$insert_product_weight','$insert_product_price','$insert_product_imgurl','0');";
-		if(pg_query($insert1))
+		if($db->db_query($insert1))
 		{
 			echo '新增商品成功！';
 		}
@@ -133,7 +133,7 @@ else if($type2 == 'backstageEdit')
 	$update_product_price = $_REQUEST['update_product_price'];
 	
 	$update1 = "update product set tid='$update_product_tid',pmodel='$update_product_pmodel',size='$update_product_size',weight='$update_product_weight',price='$update_product_price' where pid='$pid';";
-	if(pg_query($update1))
+	if($db->db_query($update1))
 	{
 		echo '編號：'.$pid;
 		echo '修改產品成功！';
@@ -147,7 +147,7 @@ else if($type2 == 'backstageDel')
 	$pid = $_REQUEST['pid'];
 
 	$delete1 = "delete from product where pid='$pid';";
-	if(pg_query($delete1))
+	if($db->db_query($delete1))
 	{
 		echo '刪除產品編號為'.$pid.'　成功！';
 	}
@@ -161,8 +161,8 @@ else if($type2 == 1)
 	$b11 = $_REQUEST['b11'];//接收購物車的產品類型
 	//搜尋購物車內指定編號的商品
 	$select_cart_pid_1 = "select product.pid,product_type.tid,product_type.tname,product.pmodel,product.size,product.weight,product.price,product.imgurl,product.click from product,product_type where product.tid=product_type.tid and product.pid='$b1';";
-	$select_cart_pid_2 = pg_query($select_cart_pid_1);
-	$select_cart_pid_3 = pg_fetch_row($select_cart_pid_2);
+	$select_cart_pid_2 = $db->db_query($select_cart_pid_1);
+	$select_cart_pid_3 = $db->db_fetch($select_cart_pid_2);
 	echo '編號No.'.$b1.'的商品已經加入您的購物車了！<br/>';
 	$_SESSION["cart_pid_$b1"] = $select_cart_pid_3[0]; //紀錄商品編號
 	$_SESSION["cart_tid_$b1"] = $select_cart_pid_3[1]; //紀錄類別編號
@@ -213,7 +213,7 @@ else if($type2 == 3)
 	if($pidnum2 != null && $pidnum2 > 0)
 	{
 		$insert1 = "insert into product_order values ((select max(oid)+1 from product_order),'$idc','$product_pid','$cart_price','$pidnum2','$psum','$time');";
-		if(pg_query($insert1))
+		if($db->db_query($insert1))
 		{
 			echo '您所購買的產品為：';
 			echo '<table>';
@@ -259,8 +259,8 @@ else if($type2 == 3)
 	echo '</tr>';
 	//搜尋購物車內有的物品
 	$select_cart_1 = "select product.pid,product_type.tid,product_type.tname,product.pmodel,product.size,product.weight,product.price,product.imgurl,product.click from product,product_type where product.tid=product_type.tid order by pid desc;";
-	$select_cart_2 = pg_query($select_cart_1);
-	while($select_cart_3 = pg_fetch_row($select_cart_2))
+	$select_cart_2 = $db->db_query($select_cart_1);
+	while($select_cart_3 = $db->db_fetch($select_cart_2))
 	{
 		$cart_pid = $_SESSION["cart_pid_$select_cart_3[0]"];//Session中的商品編號
 		$cart_tid = $_SESSION["cart_tid_$select_cart_3[0]"];//Session中的類別編號
@@ -283,7 +283,7 @@ else if($type2 == 3)
 			echo '</tr>';
 			//INSERT資料
 			$insert1 = "insert into product_order values ((select max(oid)+1 from product_order),'1','$cart_pid','$pidnum');";
-			if(pg_query($insert1))
+			if($db->db_query($insert1))
 			{
 				echo '';
 			}
@@ -295,8 +295,8 @@ else if($type2 == 3)
 	echo '<a href="cart.php">回到購物車</a>';
 	//搜尋購物車內有的物品
 	$select_cart_4 = "select product.pid,product_type.tid,product_type.tname,product.pmodel,product.size,product.weight,product.price,product.imgurl,product.click from product,product_type where product.tid=product_type.tid;";
-	$select_cart_5 = pg_query($select_cart_4);
-	while($select_cart_6 = pg_fetch_row($select_cart_5))
+	$select_cart_5 = $db->db_query($select_cart_4);
+	while($select_cart_6 = $db->db_fetch($select_cart_5))
 	{
 		unset($_SESSION["cart_pid_$select_cart_6[0]"]);
 		unset($_SESSION["cart_tid_$select_cart_6[0]"]);
@@ -352,8 +352,8 @@ else if($type2 == 4)
 
 	//搜尋所有的商品pid
 	$pid_1 = "select pid from product;";
-	$pid_2 = pg_query($pid_1);
-	while($pid_3 = pg_fetch_row($pid_2))
+	$pid_2 = $db->db_query($pid_1);
+	while($pid_3 = $db->db_fetch($pid_2))
 	{
 		unset($_SESSION["search1_$pid_3[0]"]);
 		unset($_SESSION["search2_$pid_3[0]"]);
@@ -367,8 +367,8 @@ else if($type2 == 4)
 	and product_type.tname like '%$search_product_type2%' and product.pmodel like '%$search_product_pmodel2%'
 	and product.weight >= $search_product_weight_s2 and product.weight <= $search_product_weight_b2
 	and product.price >= $search_product_price_s2 and product.price <= $search_product_price_b2;";
-	$select_cart_pid_2 = pg_query($select_cart_pid_1);
-	while($select_cart_pid_3 = pg_fetch_row($select_cart_pid_2))
+	$select_cart_pid_2 = $db->db_query($select_cart_pid_1);
+	while($select_cart_pid_3 = $db->db_fetch($select_cart_pid_2))
 	{
 		$_SESSION["search1_$select_cart_pid_3[0]"] = $select_cart_pid_3[0]; //pid
 		$_SESSION["search2_$select_cart_pid_3[0]"] = $select_cart_pid_3[3]; //pmodel
