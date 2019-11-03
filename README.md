@@ -1,5 +1,9 @@
 # XiangFang
 
+http://tonyyang924.tk:1337/
+
+<img src="screenshots/output.gif" />
+
 ## Setup environment
 
 ### Build docker images
@@ -42,8 +46,11 @@ $ psql -d docker < 20121109psql.sql
 just stop and remove then run docker again.
 
 ```
+$ docker stop psql_xiangfang && docker rm psql_xiangfang
+$ docker run -d -p 5432:5432 --name psql_xiangfang ubuntu:14.04postgres
+
 $ docker stop php_xiangfang && docker rm php_xiangfang
-$ docker run -p 1337:80 ...
+$ docker run -p 1337:80 -v $PWD:/var/www/html -e DBUSER=docker -e DBPASS=docker -e DBPORT=5432 -e DBNAME=docker -e DBHOST=psql_xiangfang --link psql_xiangfang --name php_xiangfang -d php:5.06apache_postgres
 ```
 
 # References
