@@ -45,7 +45,7 @@ psql -d docker < 20121109psql.sql
 
 just stop and remove then run docker again.
 
-```
+```shell
 docker stop psql_xiangfang && docker rm psql_xiangfang
 docker run -d -p 5432:5432 --name psql_xiangfang ubuntu:14.04postgres
 
