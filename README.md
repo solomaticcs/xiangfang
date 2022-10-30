@@ -1,7 +1,4 @@
 # XiangFang
-
-http://tonyyang924.tk:1337/
-
 <img src="screenshots/output.gif" />
 
 ## Setup environment
